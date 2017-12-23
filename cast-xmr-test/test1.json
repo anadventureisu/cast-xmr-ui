@@ -1,0 +1,45 @@
+﻿{
+  "total_hash_rate": 4053928,
+  "total_hash_rate_avg": 3992984,
+  "pool": {
+    "server": "pool.supportxmr.com:7777",
+    "status": "connected",
+    "online": 828,
+    "offline": 0,
+    "reconnects": 0,
+    "time_connected": "2017-12-20 21:34:28",
+    "time_disconnected": "2017-12-20 21:34:28"
+  },
+  "job": {
+    "job_number": 21,
+    "difficulty": 152255,
+    "running": 16,
+    "job_time_avg": 40.60
+  },
+  "shares": {
+    "num_accepted": 38,
+    "num_rejected": 1,
+    "num_invalid": 2,
+    "num_network_fail": 3,
+    "num_outdated": 4,
+    "search_time_avg": 20.76
+  },
+  "devices": [
+    {
+      "device": "GPU0",
+      "device_id": 0,
+      "hash_rate": 2030594,
+      "hash_rate_avg": 1997620,
+      "gpu_temperature": 51,
+      "gpu_fan_rpm": 3810
+    },
+    {
+      "device": "GPU1",
+      "device_id": 1,
+      "hash_rate": 2023334,
+      "hash_rate_avg": 1995364,
+      "gpu_temperature": 53,
+      "gpu_fan_rpm": 3846
+    }
+  ]
+}

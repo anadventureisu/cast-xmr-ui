@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="cast_xmr_ui.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WalletAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1Jpa5vXshvEaQKFjenma8qarFofkEJzrPK</Value>
+    </Setting>
+    <Setting Name="PoolAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cryptonight.usa.nicehash.com:3355</Value>
+    </Setting>
+    <Setting Name="WorkerPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">x</Value>
+    </Setting>
+    <Setting Name="Intensity" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="GPU" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0,1</Value>
+    </Setting>
+    <Setting Name="UseNicehash" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FastJobSwitching" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AutoRestart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AutoRestartRate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1900</Value>
+    </Setting>
+    <Setting Name="MinerPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
