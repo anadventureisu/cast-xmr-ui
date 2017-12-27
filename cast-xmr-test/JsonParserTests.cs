@@ -31,16 +31,16 @@ namespace CastXmrLib.Tests
             Assert.AreEqual(2, state.GpuStates.Count);
 
             GpuState gpu0 = state.GetGpu(0);
-            Assert.AreEqual(2030594, gpu0.CurrentHashRate);
+            Assert.AreEqual(2030, gpu0.CurrentHashRate);
             Assert.AreEqual(51, gpu0.CurrentGpuTemp);
             Assert.AreEqual(3810, gpu0.CurrentFanSpeed);
 
             GpuState gpu1 = state.GetGpu(1);
-            Assert.AreEqual(2023334, gpu1.CurrentHashRate);
+            Assert.AreEqual(2023, gpu1.CurrentHashRate);
             Assert.AreEqual(53, gpu1.CurrentGpuTemp);
             Assert.AreEqual(3846, gpu1.CurrentFanSpeed);
 
-            Assert.AreEqual(4053928, state.CurrentGlobalRate);
+            Assert.AreEqual(4053, state.CurrentGlobalRate);
         }
 
     }

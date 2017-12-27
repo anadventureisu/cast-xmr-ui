@@ -180,5 +180,12 @@ namespace cast_xmr_ui
             processRunner.Kill();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(chooseMinerDialog.ShowDialog() == DialogResult.OK)
+            {
+                exePath.Text = chooseMinerDialog.FileName;
+            }
+        }
     }
 }
