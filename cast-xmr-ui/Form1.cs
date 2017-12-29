@@ -18,6 +18,7 @@ namespace cast_xmr_ui
     {
         private AppState app = new AppState();
         DateTime minerStarted;
+        private int restartCount = 0;
 
         public Form1()
         {
@@ -149,6 +150,8 @@ namespace cast_xmr_ui
                             processRunner.Kill();
                             startMiner();
                             statusTimer.Start();
+                            restartCount++;
+                            restartLabel.Text = String.Format("{0} restarts", restartCount);
                             break;
                         }
                     }

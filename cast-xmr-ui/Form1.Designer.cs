@@ -54,6 +54,7 @@
             this.poolAddress = new System.Windows.Forms.TextBox();
             this.chooseMinerDialog = new System.Windows.Forms.OpenFileDialog();
             this.label8 = new System.Windows.Forms.Label();
+            this.restartLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.intensity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -306,11 +307,21 @@
             this.label8.TabIndex = 21;
             this.label8.Text = "Note: Settings are saved on successful start.";
             // 
+            // restartLabel
+            // 
+            this.restartLabel.AutoSize = true;
+            this.restartLabel.Location = new System.Drawing.Point(454, 67);
+            this.restartLabel.Name = "restartLabel";
+            this.restartLabel.Size = new System.Drawing.Size(50, 13);
+            this.restartLabel.TabIndex = 22;
+            this.restartLabel.Text = "0 restarts";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 407);
+            this.Controls.Add(this.restartLabel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.hashRestart);
@@ -368,6 +379,7 @@
         private System.Windows.Forms.CheckBox autoRestartCheck;
         private System.Windows.Forms.OpenFileDialog chooseMinerDialog;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label restartLabel;
     }
 }
 
