@@ -345,7 +345,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.poolAddress);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Cast XMR UI";
             ((System.ComponentModel.ISupportInitialize)(this.intensity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

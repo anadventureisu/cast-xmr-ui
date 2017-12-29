@@ -108,7 +108,13 @@ namespace cast_xmr_ui
             Debug.WriteLine("Args: " + args);
 
             consoleLog.AppendText("STARTING: " + processRunner.StartInfo.FileName + " " + processRunner.StartInfo.Arguments + Environment.NewLine);
-            processRunner.Start();
+            try
+            {
+                processRunner.Start();
+            } catch(Exception e)
+            {
+                MessageBox.Show("Could not start miner: " + e.Message, "Error");
+            }
             minerStarted = DateTime.Now;
         }
 
