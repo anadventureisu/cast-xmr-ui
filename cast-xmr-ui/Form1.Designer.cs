@@ -188,7 +188,7 @@
             // 
             // statusTimer
             // 
-            this.statusTimer.Interval = 10000;
+            this.statusTimer.Interval = 3000;
             this.statusTimer.Tick += new System.EventHandler(this.statusTimer_Tick);
             // 
             // fastJobCheck
