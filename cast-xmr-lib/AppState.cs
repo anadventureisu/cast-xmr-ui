@@ -36,6 +36,7 @@ namespace CastXmrLib
             {
                 GpuState s = new GpuState();
                 GpuStates[index] = s;
+                s.Name = "GPU" + index;
             }
             return GpuStates[index];
         }

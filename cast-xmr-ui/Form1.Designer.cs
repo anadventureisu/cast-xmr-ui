@@ -55,7 +55,17 @@
             this.chooseMinerDialog = new System.Windows.Forms.OpenFileDialog();
             this.label8 = new System.Windows.Forms.Label();
             this.restartLabel = new System.Windows.Forms.Label();
+            this.gpuDataGrid = new System.Windows.Forms.DataGridView();
+            this.gpuStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentHashRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fiveMinHashAvgDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oneHourHashAvgDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentFanSpeedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentGpuTempDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.intensity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpuDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpuStateBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -146,11 +156,11 @@
             this.consoleLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.consoleLog.Location = new System.Drawing.Point(12, 193);
+            this.consoleLog.Location = new System.Drawing.Point(12, 254);
             this.consoleLog.Multiline = true;
             this.consoleLog.Name = "consoleLog";
             this.consoleLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.consoleLog.Size = new System.Drawing.Size(699, 202);
+            this.consoleLog.Size = new System.Drawing.Size(699, 141);
             this.consoleLog.TabIndex = 11;
             // 
             // label5
@@ -316,11 +326,81 @@
             this.restartLabel.TabIndex = 22;
             this.restartLabel.Text = "0 restarts";
             // 
+            // gpuDataGrid
+            // 
+            this.gpuDataGrid.AllowUserToAddRows = false;
+            this.gpuDataGrid.AllowUserToDeleteRows = false;
+            this.gpuDataGrid.AllowUserToResizeRows = false;
+            this.gpuDataGrid.AutoGenerateColumns = false;
+            this.gpuDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gpuDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gpuDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NameColumn,
+            this.currentHashRateDataGridViewTextBoxColumn,
+            this.fiveMinHashAvgDataGridViewTextBoxColumn,
+            this.oneHourHashAvgDataGridViewTextBoxColumn,
+            this.currentFanSpeedDataGridViewTextBoxColumn,
+            this.currentGpuTempDataGridViewTextBoxColumn});
+            this.gpuDataGrid.DataSource = this.gpuStateBindingSource;
+            this.gpuDataGrid.Location = new System.Drawing.Point(434, 93);
+            this.gpuDataGrid.Name = "gpuDataGrid";
+            this.gpuDataGrid.ReadOnly = true;
+            this.gpuDataGrid.RowHeadersVisible = false;
+            this.gpuDataGrid.Size = new System.Drawing.Size(277, 150);
+            this.gpuDataGrid.TabIndex = 24;
+            // 
+            // gpuStateBindingSource
+            // 
+            this.gpuStateBindingSource.DataSource = typeof(CastXmrLib.GpuState);
+            // 
+            // NameColumn
+            // 
+            this.NameColumn.DataPropertyName = "Name";
+            this.NameColumn.HeaderText = "Name";
+            this.NameColumn.Name = "NameColumn";
+            this.NameColumn.ReadOnly = true;
+            // 
+            // currentHashRateDataGridViewTextBoxColumn
+            // 
+            this.currentHashRateDataGridViewTextBoxColumn.DataPropertyName = "CurrentHashRate";
+            this.currentHashRateDataGridViewTextBoxColumn.HeaderText = "Curr";
+            this.currentHashRateDataGridViewTextBoxColumn.Name = "currentHashRateDataGridViewTextBoxColumn";
+            this.currentHashRateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fiveMinHashAvgDataGridViewTextBoxColumn
+            // 
+            this.fiveMinHashAvgDataGridViewTextBoxColumn.DataPropertyName = "FiveMinHashAvg";
+            this.fiveMinHashAvgDataGridViewTextBoxColumn.HeaderText = "5m";
+            this.fiveMinHashAvgDataGridViewTextBoxColumn.Name = "fiveMinHashAvgDataGridViewTextBoxColumn";
+            this.fiveMinHashAvgDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // oneHourHashAvgDataGridViewTextBoxColumn
+            // 
+            this.oneHourHashAvgDataGridViewTextBoxColumn.DataPropertyName = "OneHourHashAvg";
+            this.oneHourHashAvgDataGridViewTextBoxColumn.HeaderText = "1h";
+            this.oneHourHashAvgDataGridViewTextBoxColumn.Name = "oneHourHashAvgDataGridViewTextBoxColumn";
+            this.oneHourHashAvgDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // currentFanSpeedDataGridViewTextBoxColumn
+            // 
+            this.currentFanSpeedDataGridViewTextBoxColumn.DataPropertyName = "CurrentFanSpeed";
+            this.currentFanSpeedDataGridViewTextBoxColumn.HeaderText = "RPM";
+            this.currentFanSpeedDataGridViewTextBoxColumn.Name = "currentFanSpeedDataGridViewTextBoxColumn";
+            this.currentFanSpeedDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // currentGpuTempDataGridViewTextBoxColumn
+            // 
+            this.currentGpuTempDataGridViewTextBoxColumn.DataPropertyName = "CurrentGpuTemp";
+            this.currentGpuTempDataGridViewTextBoxColumn.HeaderText = "Temp";
+            this.currentGpuTempDataGridViewTextBoxColumn.Name = "currentGpuTempDataGridViewTextBoxColumn";
+            this.currentGpuTempDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 407);
+            this.Controls.Add(this.gpuDataGrid);
             this.Controls.Add(this.restartLabel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -347,6 +427,8 @@
             this.Name = "Form1";
             this.Text = "Cast XMR UI";
             ((System.ComponentModel.ISupportInitialize)(this.intensity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpuDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpuStateBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,6 +462,14 @@
         private System.Windows.Forms.OpenFileDialog chooseMinerDialog;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label restartLabel;
+        private System.Windows.Forms.DataGridView gpuDataGrid;
+        private System.Windows.Forms.BindingSource gpuStateBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn currentHashRateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fiveMinHashAvgDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oneHourHashAvgDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn currentFanSpeedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn currentGpuTempDataGridViewTextBoxColumn;
     }
 }
 

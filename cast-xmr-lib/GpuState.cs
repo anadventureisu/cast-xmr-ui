@@ -11,6 +11,7 @@ namespace CastXmrLib
     /// </summary>
     public class GpuState
     {
+        public string Name { get; set; }
         public long CurrentHashRate { get; private set; }
         public int CurrentFanSpeed { get; private set; }
         public int CurrentGpuTemp { get; private set; }

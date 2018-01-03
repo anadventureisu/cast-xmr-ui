@@ -140,7 +140,15 @@ namespace cast_xmr_ui
                 JsonParser.Parse(response, app);
                 app.UpdateGlobalRates();
 
-                printStatus();
+                //printStatus();
+                
+                // TODO: figure out how to make GpuState fire update events.
+                gpuStateBindingSource.Clear();
+                foreach (int gpu in app.GpuStates.Keys)
+                {
+                    gpuStateBindingSource.Add(app.GetGpu(gpu));
+                }
+                
 
                 int restartRate = int.Parse(hashRestart.Text);
 
@@ -160,6 +168,7 @@ namespace cast_xmr_ui
                             restartLabel.Text = String.Format("{0} restarts", restartCount);
                             break;
                         }
+                        
                     }
                 }
                 
@@ -196,5 +205,6 @@ namespace cast_xmr_ui
                 exePath.Text = chooseMinerDialog.FileName;
             }
         }
+
     }
 }
