@@ -55,7 +55,40 @@
             this.chooseMinerDialog = new System.Windows.Forms.OpenFileDialog();
             this.label8 = new System.Windows.Forms.Label();
             this.restartLabel = new System.Windows.Forms.Label();
+            this.gpuDataGrid = new System.Windows.Forms.DataGridView();
+            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.globalCurrent = new System.Windows.Forms.Label();
+            this.global5m = new System.Windows.Forms.Label();
+            this.global1h = new System.Windows.Forms.Label();
+            this.appStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.currentHashRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fiveMinHashAvgDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oneHourHashAvgDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentFanSpeedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentGpuTempDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gpuStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.totalShares = new System.Windows.Forms.Label();
+            this.acceptedShares = new System.Windows.Forms.Label();
+            this.rejectedShares = new System.Windows.Forms.Label();
+            this.invalidShares = new System.Windows.Forms.Label();
+            this.outdatedShares = new System.Windows.Forms.Label();
+            this.netErrShares = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.intensity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpuDataGrid)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.appStateBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpuStateBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -123,7 +156,7 @@
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(12, 164);
+            this.startButton.Location = new System.Drawing.Point(12, 269);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(75, 23);
             this.startButton.TabIndex = 9;
@@ -133,7 +166,7 @@
             // 
             // stopButton
             // 
-            this.stopButton.Location = new System.Drawing.Point(116, 164);
+            this.stopButton.Location = new System.Drawing.Point(116, 269);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(75, 23);
             this.stopButton.TabIndex = 10;
@@ -146,11 +179,11 @@
             this.consoleLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.consoleLog.Location = new System.Drawing.Point(12, 193);
+            this.consoleLog.Location = new System.Drawing.Point(12, 301);
             this.consoleLog.Multiline = true;
             this.consoleLog.Name = "consoleLog";
             this.consoleLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.consoleLog.Size = new System.Drawing.Size(699, 202);
+            this.consoleLog.Size = new System.Drawing.Size(699, 163);
             this.consoleLog.TabIndex = 11;
             // 
             // label5
@@ -230,7 +263,7 @@
             this.autoRestartCheck.Checked = global::cast_xmr_ui.Properties.Settings.Default.AutoRestart;
             this.autoRestartCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.autoRestartCheck.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::cast_xmr_ui.Properties.Settings.Default, "AutoRestart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.autoRestartCheck.Location = new System.Drawing.Point(457, 15);
+            this.autoRestartCheck.Location = new System.Drawing.Point(116, 166);
             this.autoRestartCheck.Name = "autoRestartCheck";
             this.autoRestartCheck.Size = new System.Drawing.Size(207, 17);
             this.autoRestartCheck.TabIndex = 18;
@@ -240,7 +273,7 @@
             // hashRestart
             // 
             this.hashRestart.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::cast_xmr_ui.Properties.Settings.Default, "AutoRestartRate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.hashRestart.Location = new System.Drawing.Point(457, 38);
+            this.hashRestart.Location = new System.Drawing.Point(116, 189);
             this.hashRestart.Name = "hashRestart";
             this.hashRestart.Size = new System.Drawing.Size(100, 20);
             this.hashRestart.TabIndex = 19;
@@ -249,7 +282,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(563, 41);
+            this.label7.Location = new System.Drawing.Point(222, 192);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 20;
@@ -301,7 +334,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label8.Location = new System.Drawing.Point(197, 169);
+            this.label8.Location = new System.Drawing.Point(197, 274);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(218, 13);
             this.label8.TabIndex = 21;
@@ -310,18 +343,302 @@
             // restartLabel
             // 
             this.restartLabel.AutoSize = true;
-            this.restartLabel.Location = new System.Drawing.Point(454, 67);
+            this.restartLabel.Location = new System.Drawing.Point(102, 92);
             this.restartLabel.Name = "restartLabel";
-            this.restartLabel.Size = new System.Drawing.Size(50, 13);
+            this.restartLabel.Size = new System.Drawing.Size(13, 13);
             this.restartLabel.TabIndex = 22;
-            this.restartLabel.Text = "0 restarts";
+            this.restartLabel.Text = "0";
+            // 
+            // gpuDataGrid
+            // 
+            this.gpuDataGrid.AllowUserToAddRows = false;
+            this.gpuDataGrid.AllowUserToDeleteRows = false;
+            this.gpuDataGrid.AllowUserToResizeRows = false;
+            this.gpuDataGrid.AutoGenerateColumns = false;
+            this.gpuDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gpuDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gpuDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NameColumn,
+            this.currentHashRateDataGridViewTextBoxColumn,
+            this.fiveMinHashAvgDataGridViewTextBoxColumn,
+            this.oneHourHashAvgDataGridViewTextBoxColumn,
+            this.currentFanSpeedDataGridViewTextBoxColumn,
+            this.currentGpuTempDataGridViewTextBoxColumn});
+            this.gpuDataGrid.DataSource = this.gpuStateBindingSource;
+            this.gpuDataGrid.Location = new System.Drawing.Point(434, 153);
+            this.gpuDataGrid.Name = "gpuDataGrid";
+            this.gpuDataGrid.ReadOnly = true;
+            this.gpuDataGrid.RowHeadersVisible = false;
+            this.gpuDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.gpuDataGrid.Size = new System.Drawing.Size(277, 138);
+            this.gpuDataGrid.TabIndex = 24;
+            // 
+            // NameColumn
+            // 
+            this.NameColumn.DataPropertyName = "Name";
+            this.NameColumn.HeaderText = "Name";
+            this.NameColumn.Name = "NameColumn";
+            this.NameColumn.ReadOnly = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.netErrShares);
+            this.groupBox1.Controls.Add(this.outdatedShares);
+            this.groupBox1.Controls.Add(this.restartLabel);
+            this.groupBox1.Controls.Add(this.invalidShares);
+            this.groupBox1.Controls.Add(this.rejectedShares);
+            this.groupBox1.Controls.Add(this.acceptedShares);
+            this.groupBox1.Controls.Add(this.totalShares);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.global1h);
+            this.groupBox1.Controls.Add(this.global5m);
+            this.groupBox1.Controls.Add(this.globalCurrent);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Location = new System.Drawing.Point(434, 10);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(277, 137);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Global";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 20);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(98, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Current Hash Rate:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(55, 38);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(50, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "5 minute:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(65, 56);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(40, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "1 hour:";
+            // 
+            // globalCurrent
+            // 
+            this.globalCurrent.AutoSize = true;
+            this.globalCurrent.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appStateBindingSource, "CurrentGlobalRate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N2"));
+            this.globalCurrent.Location = new System.Drawing.Point(102, 20);
+            this.globalCurrent.Name = "globalCurrent";
+            this.globalCurrent.Size = new System.Drawing.Size(13, 13);
+            this.globalCurrent.TabIndex = 3;
+            this.globalCurrent.Text = "0";
+            // 
+            // global5m
+            // 
+            this.global5m.AutoSize = true;
+            this.global5m.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appStateBindingSource, "FiveMinGlobalRate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N2"));
+            this.global5m.Location = new System.Drawing.Point(102, 38);
+            this.global5m.Name = "global5m";
+            this.global5m.Size = new System.Drawing.Size(13, 13);
+            this.global5m.TabIndex = 4;
+            this.global5m.Text = "0";
+            // 
+            // global1h
+            // 
+            this.global1h.AutoSize = true;
+            this.global1h.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appStateBindingSource, "OneHourGlobalRate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N2"));
+            this.global1h.Location = new System.Drawing.Point(102, 56);
+            this.global1h.Name = "global1h";
+            this.global1h.Size = new System.Drawing.Size(13, 13);
+            this.global1h.TabIndex = 5;
+            this.global1h.Text = "0";
+            // 
+            // appStateBindingSource
+            // 
+            this.appStateBindingSource.DataSource = typeof(CastXmrLib.AppState);
+            // 
+            // currentHashRateDataGridViewTextBoxColumn
+            // 
+            this.currentHashRateDataGridViewTextBoxColumn.DataPropertyName = "CurrentHashRate";
+            this.currentHashRateDataGridViewTextBoxColumn.HeaderText = "Curr";
+            this.currentHashRateDataGridViewTextBoxColumn.Name = "currentHashRateDataGridViewTextBoxColumn";
+            this.currentHashRateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fiveMinHashAvgDataGridViewTextBoxColumn
+            // 
+            this.fiveMinHashAvgDataGridViewTextBoxColumn.DataPropertyName = "FiveMinHashAvg";
+            this.fiveMinHashAvgDataGridViewTextBoxColumn.HeaderText = "5m";
+            this.fiveMinHashAvgDataGridViewTextBoxColumn.Name = "fiveMinHashAvgDataGridViewTextBoxColumn";
+            this.fiveMinHashAvgDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // oneHourHashAvgDataGridViewTextBoxColumn
+            // 
+            this.oneHourHashAvgDataGridViewTextBoxColumn.DataPropertyName = "OneHourHashAvg";
+            this.oneHourHashAvgDataGridViewTextBoxColumn.HeaderText = "1h";
+            this.oneHourHashAvgDataGridViewTextBoxColumn.Name = "oneHourHashAvgDataGridViewTextBoxColumn";
+            this.oneHourHashAvgDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // currentFanSpeedDataGridViewTextBoxColumn
+            // 
+            this.currentFanSpeedDataGridViewTextBoxColumn.DataPropertyName = "CurrentFanSpeed";
+            this.currentFanSpeedDataGridViewTextBoxColumn.HeaderText = "RPM";
+            this.currentFanSpeedDataGridViewTextBoxColumn.Name = "currentFanSpeedDataGridViewTextBoxColumn";
+            this.currentFanSpeedDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // currentGpuTempDataGridViewTextBoxColumn
+            // 
+            this.currentGpuTempDataGridViewTextBoxColumn.DataPropertyName = "CurrentGpuTemp";
+            this.currentGpuTempDataGridViewTextBoxColumn.HeaderText = "Temp";
+            this.currentGpuTempDataGridViewTextBoxColumn.Name = "currentGpuTempDataGridViewTextBoxColumn";
+            this.currentGpuTempDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // gpuStateBindingSource
+            // 
+            this.gpuStateBindingSource.DataSource = typeof(CastXmrLib.GpuState);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(159, 20);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(70, 13);
+            this.label12.TabIndex = 6;
+            this.label12.Text = "Total Shares:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(173, 38);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(56, 13);
+            this.label13.TabIndex = 7;
+            this.label13.Text = "Accepted:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(176, 56);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(53, 13);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "Rejected:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(188, 74);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(41, 13);
+            this.label15.TabIndex = 9;
+            this.label15.Text = "Invalid:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(175, 92);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(54, 13);
+            this.label16.TabIndex = 10;
+            this.label16.Text = "Outdated:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(186, 110);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(43, 13);
+            this.label17.TabIndex = 11;
+            this.label17.Text = "Net Err:";
+            // 
+            // totalShares
+            // 
+            this.totalShares.AutoSize = true;
+            this.totalShares.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appStateBindingSource, "TotalShares", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N0"));
+            this.totalShares.Location = new System.Drawing.Point(226, 20);
+            this.totalShares.Name = "totalShares";
+            this.totalShares.Size = new System.Drawing.Size(13, 13);
+            this.totalShares.TabIndex = 12;
+            this.totalShares.Text = "0";
+            // 
+            // acceptedShares
+            // 
+            this.acceptedShares.AutoSize = true;
+            this.acceptedShares.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appStateBindingSource, "SharesAccepted", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N0"));
+            this.acceptedShares.Location = new System.Drawing.Point(226, 38);
+            this.acceptedShares.Name = "acceptedShares";
+            this.acceptedShares.Size = new System.Drawing.Size(13, 13);
+            this.acceptedShares.TabIndex = 13;
+            this.acceptedShares.Text = "0";
+            // 
+            // rejectedShares
+            // 
+            this.rejectedShares.AutoSize = true;
+            this.rejectedShares.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appStateBindingSource, "SharesRejected", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N0"));
+            this.rejectedShares.Location = new System.Drawing.Point(226, 57);
+            this.rejectedShares.Name = "rejectedShares";
+            this.rejectedShares.Size = new System.Drawing.Size(13, 13);
+            this.rejectedShares.TabIndex = 14;
+            this.rejectedShares.Text = "0";
+            // 
+            // invalidShares
+            // 
+            this.invalidShares.AutoSize = true;
+            this.invalidShares.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appStateBindingSource, "SharesInvalid", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N0"));
+            this.invalidShares.Location = new System.Drawing.Point(226, 74);
+            this.invalidShares.Name = "invalidShares";
+            this.invalidShares.Size = new System.Drawing.Size(13, 13);
+            this.invalidShares.TabIndex = 15;
+            this.invalidShares.Text = "0";
+            // 
+            // outdatedShares
+            // 
+            this.outdatedShares.AutoSize = true;
+            this.outdatedShares.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appStateBindingSource, "SharesOutdated", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N0"));
+            this.outdatedShares.Location = new System.Drawing.Point(226, 92);
+            this.outdatedShares.Name = "outdatedShares";
+            this.outdatedShares.Size = new System.Drawing.Size(13, 13);
+            this.outdatedShares.TabIndex = 16;
+            this.outdatedShares.Text = "0";
+            // 
+            // netErrShares
+            // 
+            this.netErrShares.AutoSize = true;
+            this.netErrShares.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.appStateBindingSource, "SharesNetworkError", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N0"));
+            this.netErrShares.Location = new System.Drawing.Point(226, 110);
+            this.netErrShares.Name = "netErrShares";
+            this.netErrShares.Size = new System.Drawing.Size(13, 13);
+            this.netErrShares.TabIndex = 17;
+            this.netErrShares.Text = "0";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(27, 92);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(78, 13);
+            this.label18.TabIndex = 23;
+            this.label18.Text = "Miner Restarts:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(723, 407);
-            this.Controls.Add(this.restartLabel);
+            this.ClientSize = new System.Drawing.Size(723, 476);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gpuDataGrid);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.hashRestart);
@@ -347,6 +664,11 @@
             this.Name = "Form1";
             this.Text = "Cast XMR UI";
             ((System.ComponentModel.ISupportInitialize)(this.intensity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpuDataGrid)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.appStateBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpuStateBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -380,6 +702,35 @@
         private System.Windows.Forms.OpenFileDialog chooseMinerDialog;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label restartLabel;
+        private System.Windows.Forms.DataGridView gpuDataGrid;
+        private System.Windows.Forms.BindingSource gpuStateBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn currentHashRateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fiveMinHashAvgDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oneHourHashAvgDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn currentFanSpeedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn currentGpuTempDataGridViewTextBoxColumn;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label global1h;
+        private System.Windows.Forms.BindingSource appStateBindingSource;
+        private System.Windows.Forms.Label global5m;
+        private System.Windows.Forms.Label globalCurrent;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label netErrShares;
+        private System.Windows.Forms.Label outdatedShares;
+        private System.Windows.Forms.Label invalidShares;
+        private System.Windows.Forms.Label rejectedShares;
+        private System.Windows.Forms.Label acceptedShares;
+        private System.Windows.Forms.Label totalShares;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label18;
     }
 }
 

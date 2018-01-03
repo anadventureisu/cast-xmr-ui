@@ -33,8 +33,6 @@ namespace cast_xmr_ui
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            consoleLog.Clear();
-
             if(String.IsNullOrEmpty(exePath.Text))
             {
                 MessageBox.Show("Please specify a miner path");
@@ -71,6 +69,9 @@ namespace cast_xmr_ui
 
         private void startMiner()
         {
+            // Clear out any old stats
+            app.Reset();
+
             ProcessStartInfo info = new ProcessStartInfo();
             //info.RedirectStandardError = true;
             //info.RedirectStandardInput = true;
@@ -107,7 +108,7 @@ namespace cast_xmr_ui
 
             Debug.WriteLine("Args: " + args);
 
-            consoleLog.AppendText("STARTING: " + processRunner.StartInfo.FileName + " " + processRunner.StartInfo.Arguments + Environment.NewLine);
+            consoleLog.AppendText(DateTime.Now + ": STARTING: " + processRunner.StartInfo.FileName + " " + processRunner.StartInfo.Arguments + Environment.NewLine);
             try
             {
                 processRunner.Start();
@@ -140,7 +141,17 @@ namespace cast_xmr_ui
                 JsonParser.Parse(response, app);
                 app.UpdateGlobalRates();
 
-                printStatus();
+                //printStatus();
+                appStateBindingSource.Clear();
+                appStateBindingSource.Add(app);
+                
+                // TODO: figure out how to make GpuState fire update events.
+                gpuStateBindingSource.Clear();
+                foreach (int gpu in app.GpuStates.Keys)
+                {
+                    gpuStateBindingSource.Add(app.GetGpu(gpu));
+                }
+                
 
                 int restartRate = int.Parse(hashRestart.Text);
 
@@ -151,15 +162,16 @@ namespace cast_xmr_ui
                         GpuState gs = app.GetGpu(gpu);
                         if (gs.FiveMinHashAvg < restartRate)
                         {
-                            consoleLog.AppendText(String.Format("RESTARTING MINER - rate {0:N0} < {1:N0}\n", gs.FiveMinHashAvg, restartRate));
+                            consoleLog.AppendText(String.Format("{2}: RESTARTING MINER - rate {0:N0} < {1:N0}\n", gs.FiveMinHashAvg, restartRate, DateTime.Now));
                             statusTimer.Stop();
                             processRunner.Kill();
                             startMiner();
                             statusTimer.Start();
                             restartCount++;
-                            restartLabel.Text = String.Format("{0} restarts", restartCount);
+                            restartLabel.Text = ""+restartCount;
                             break;
                         }
+                        
                     }
                 }
                 
@@ -196,5 +208,6 @@ namespace cast_xmr_ui
                 exePath.Text = chooseMinerDialog.FileName;
             }
         }
+
     }
 }

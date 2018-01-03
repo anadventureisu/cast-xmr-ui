@@ -36,6 +36,7 @@ namespace CastXmrLib
             {
                 GpuState s = new GpuState();
                 GpuStates[index] = s;
+                s.Name = "GPU" + index;
             }
             return GpuStates[index];
         }
@@ -64,6 +65,20 @@ namespace CastXmrLib
                 OneHourGlobalRate = hourRate;
             }
             
+        }
+
+        public void Reset()
+        {
+            CurrentGlobalRate = 0.0;
+            FiveMinGlobalRate = 0.0;
+            OneHourGlobalRate = 0.0;
+            SharesAccepted = 0;
+            SharesInvalid = 0;
+            SharesNetworkError = 0;
+            SharesOutdated = 0;
+            SharesRejected = 0;
+            TotalShares = 0;
+            GpuStates.Clear();
         }
     }
 }
