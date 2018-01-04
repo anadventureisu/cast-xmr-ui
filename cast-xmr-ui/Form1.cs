@@ -142,15 +142,23 @@ namespace cast_xmr_ui
                 app.UpdateGlobalRates();
 
                 //printStatus();
-                appStateBindingSource.Clear();
-                appStateBindingSource.Add(app);
                 
-                // TODO: figure out how to make GpuState fire update events.
-                gpuStateBindingSource.Clear();
-                foreach (int gpu in app.GpuStates.Keys)
+                // If it's the first time through, populate the data binding
+                if(gpuStateBindingSource.Count != app.GpuStates.Count)
                 {
-                    gpuStateBindingSource.Add(app.GetGpu(gpu));
+                    gpuStateBindingSource.Clear();
+                    foreach (int gpu in app.GpuStates.Keys)
+                    {
+                        gpuStateBindingSource.Add(app.GetGpu(gpu));
+                    }
+                    appStateBindingSource.Clear();
+                    appStateBindingSource.Add(app);
+
                 }
+
+                // Update data binding
+                gpuStateBindingSource.ResetBindings(false);
+                appStateBindingSource.ResetBindings(false);
                 
 
                 int restartRate = int.Parse(hashRestart.Text);
