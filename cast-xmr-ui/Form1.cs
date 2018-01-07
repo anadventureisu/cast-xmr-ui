@@ -71,6 +71,8 @@ namespace cast_xmr_ui
         {
             // Clear out any old stats
             app.Reset();
+            appStateBindingSource.Clear();
+            gpuStateBindingSource.Clear();
 
             ProcessStartInfo info = new ProcessStartInfo();
             //info.RedirectStandardError = true;
