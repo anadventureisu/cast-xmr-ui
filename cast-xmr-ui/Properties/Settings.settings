@@ -32,5 +32,14 @@
     <Setting Name="MinerPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="DriverRestart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DriverRestartHashDrop" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DriverRestartHashrate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1700</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

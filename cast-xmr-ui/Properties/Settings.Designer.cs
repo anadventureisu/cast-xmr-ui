@@ -142,5 +142,41 @@ namespace cast_xmr_ui.Properties {
                 this["MinerPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DriverRestart {
+            get {
+                return ((bool)(this["DriverRestart"]));
+            }
+            set {
+                this["DriverRestart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DriverRestartHashDrop {
+            get {
+                return ((bool)(this["DriverRestartHashDrop"]));
+            }
+            set {
+                this["DriverRestartHashDrop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1700")]
+        public string DriverRestartHashrate {
+            get {
+                return ((string)(this["DriverRestartHashrate"]));
+            }
+            set {
+                this["DriverRestartHashrate"] = value;
+            }
+        }
     }
 }

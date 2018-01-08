@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -216,6 +217,30 @@ namespace cast_xmr_ui
             if(chooseMinerDialog.ShowDialog() == DialogResult.OK)
             {
                 exePath.Text = chooseMinerDialog.FileName;
+            }
+        }
+
+        private void restartDriverOnStart_CheckedChanged(object sender, EventArgs e)
+        {
+            if (restartDriverOnStart.Checked)
+            {
+                // Need to be Administrator
+                bool admin = IsAdministrator();
+                if(!admin)
+                {
+                    MessageBox.Show("Hold up there, partner! I can't do this unless I'm running as Administrator");
+                    restartDriverOnStart.Checked = false;
+                }
+            }
+            
+        }
+
+        private bool IsAdministrator()
+        {
+            using (var identity = WindowsIdentity.GetCurrent())
+            {
+                var principal = new WindowsPrincipal(identity);
+                return principal.IsInRole(WindowsBuiltInRole.Administrator);
             }
         }
 

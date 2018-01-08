@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AppState.cs" />
     <Compile Include="CliParser.cs" />
+    <Compile Include="Devcon.cs" />
     <Compile Include="GpuSample.cs" />
     <Compile Include="GpuState.cs" />
     <Compile Include="JsonParser.cs" />
