@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AppStateTest.cs" />
     <Compile Include="CliParserTests.cs" />
+    <Compile Include="DevconTests.cs" />
     <Compile Include="GpuStateTest.cs" />
     <Compile Include="JsonParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
