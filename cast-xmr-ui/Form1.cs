@@ -55,6 +55,18 @@ namespace cast_xmr_ui
                 throw new ArgumentNullException("WalletAddress");
             }
 
+            if(restartDriverHashDrop.Checked || restartDriverOnStart.Checked)
+            {
+                if(!IsAdministrator())
+                {
+                    MessageBox.Show("You've asked me to restart the driver, but I " +
+                        "can't do that without Administrator privileges. Please either " +
+                        "disable driver restarts or restart the application as an " +
+                        "Administrator.", "Woah");
+                    return;
+                }
+            }
+
             startMiner();
 
             startButton.Enabled = false;
@@ -228,7 +240,8 @@ namespace cast_xmr_ui
                 bool admin = IsAdministrator();
                 if(!admin)
                 {
-                    MessageBox.Show("Hold up there, partner! I can't do this unless I'm running as Administrator");
+                    MessageBox.Show("Hold up there, partner! I can't do this unless " +
+                        "I'm running as Administrator.", "Error");
                     restartDriverOnStart.Checked = false;
                 }
             }
@@ -244,5 +257,20 @@ namespace cast_xmr_ui
             }
         }
 
+        private void restartDriverHashDrop_CheckedChanged(object sender, EventArgs e)
+        {
+            if (restartDriverHashDrop.Checked)
+            {
+                // Need to be Administrator
+                bool admin = IsAdministrator();
+                if (!admin)
+                {
+                    MessageBox.Show("Hold up there, partner! I can't do this unless " +
+                        "I'm running as Administrator.", "Error");
+                    restartDriverHashDrop.Checked = false;
+                }
+            }
+
+        }
     }
 }

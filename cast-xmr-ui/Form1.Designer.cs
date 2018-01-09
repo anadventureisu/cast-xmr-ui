@@ -557,6 +557,7 @@
             this.toolTip1.SetToolTip(this.restartDriverHashDrop, "If the hashrate drops significantly (or even to zero), the driver may have crashe" +
         "d and will need to be reset.");
             this.restartDriverHashDrop.UseVisualStyleBackColor = true;
+            this.restartDriverHashDrop.CheckedChanged += new System.EventHandler(this.restartDriverHashDrop_CheckedChanged);
             // 
             // restartDriverHashrate
             // 
