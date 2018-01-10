@@ -115,6 +115,11 @@ namespace cast_xmr_ui
                 args.Append(" --fastjobswitch");
             }
 
+            if (forceCompute.Checked)
+            {
+                args.Append(" --forcecompute");
+            }
+
             args.Append(" -G " + gpuText.Text);
             args.Append(" --remoteaccess");
             info.Arguments = args.ToString();

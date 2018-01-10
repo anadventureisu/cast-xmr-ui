@@ -74,11 +74,12 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.restartDriverOnStart = new System.Windows.Forms.CheckBox();
-            this.restartDriverHashDrop = new System.Windows.Forms.CheckBox();
-            this.restartDriverHashrate = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.forceCompute = new System.Windows.Forms.CheckBox();
+            this.restartDriverHashrate = new System.Windows.Forms.TextBox();
+            this.restartDriverHashDrop = new System.Windows.Forms.CheckBox();
+            this.restartDriverOnStart = new System.Windows.Forms.CheckBox();
             this.hashRestart = new System.Windows.Forms.TextBox();
             this.autoRestartCheck = new System.Windows.Forms.CheckBox();
             this.gpuText = new System.Windows.Forms.TextBox();
@@ -528,21 +529,37 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Current Hash Rate:";
             // 
-            // restartDriverOnStart
+            // label19
             // 
-            this.restartDriverOnStart.AutoSize = true;
-            this.restartDriverOnStart.Checked = global::cast_xmr_ui.Properties.Settings.Default.DriverRestart;
-            this.restartDriverOnStart.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::cast_xmr_ui.Properties.Settings.Default, "DriverRestart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.restartDriverOnStart.Location = new System.Drawing.Point(116, 216);
-            this.restartDriverOnStart.Name = "restartDriverOnStart";
-            this.restartDriverOnStart.Size = new System.Drawing.Size(146, 17);
-            this.restartDriverOnStart.TabIndex = 26;
-            this.restartDriverOnStart.Text = "Restart driver on first start";
-            this.toolTip1.SetToolTip(this.restartDriverOnStart, "When the system reboots or the miner crashes, resetting the Catylist device drive" +
-        "r is required to get good hash rates.  Some people use devcon.exe for this.  Req" +
-        "uires running as Administrator.");
-            this.restartDriverOnStart.UseVisualStyleBackColor = true;
-            this.restartDriverOnStart.CheckedChanged += new System.EventHandler(this.restartDriverOnStart_CheckedChanged);
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(290, 241);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(72, 13);
+            this.label19.TabIndex = 29;
+            this.label19.Text = "H/s on restart";
+            // 
+            // forceCompute
+            // 
+            this.forceCompute.AutoSize = true;
+            this.forceCompute.Checked = global::cast_xmr_ui.Properties.Settings.Default.ForceCompute;
+            this.forceCompute.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.forceCompute.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::cast_xmr_ui.Properties.Settings.Default, "ForceCompute", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.forceCompute.Location = new System.Drawing.Point(267, 118);
+            this.forceCompute.Name = "forceCompute";
+            this.forceCompute.Size = new System.Drawing.Size(128, 17);
+            this.forceCompute.TabIndex = 30;
+            this.forceCompute.Text = "Force Compute Mode";
+            this.toolTip1.SetToolTip(this.forceCompute, "Helpful for 5XX cards when using standard driver.");
+            this.forceCompute.UseVisualStyleBackColor = true;
+            // 
+            // restartDriverHashrate
+            // 
+            this.restartDriverHashrate.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::cast_xmr_ui.Properties.Settings.Default, "DriverRestartHashrate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.restartDriverHashrate.Location = new System.Drawing.Point(232, 238);
+            this.restartDriverHashrate.Name = "restartDriverHashrate";
+            this.restartDriverHashrate.Size = new System.Drawing.Size(52, 20);
+            this.restartDriverHashrate.TabIndex = 28;
+            this.restartDriverHashrate.Text = global::cast_xmr_ui.Properties.Settings.Default.DriverRestartHashrate;
             // 
             // restartDriverHashDrop
             // 
@@ -559,23 +576,21 @@
             this.restartDriverHashDrop.UseVisualStyleBackColor = true;
             this.restartDriverHashDrop.CheckedChanged += new System.EventHandler(this.restartDriverHashDrop_CheckedChanged);
             // 
-            // restartDriverHashrate
+            // restartDriverOnStart
             // 
-            this.restartDriverHashrate.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::cast_xmr_ui.Properties.Settings.Default, "DriverRestartHashrate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.restartDriverHashrate.Location = new System.Drawing.Point(232, 238);
-            this.restartDriverHashrate.Name = "restartDriverHashrate";
-            this.restartDriverHashrate.Size = new System.Drawing.Size(52, 20);
-            this.restartDriverHashrate.TabIndex = 28;
-            this.restartDriverHashrate.Text = global::cast_xmr_ui.Properties.Settings.Default.DriverRestartHashrate;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(290, 241);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(72, 13);
-            this.label19.TabIndex = 29;
-            this.label19.Text = "H/s on restart";
+            this.restartDriverOnStart.AutoSize = true;
+            this.restartDriverOnStart.Checked = global::cast_xmr_ui.Properties.Settings.Default.DriverRestart;
+            this.restartDriverOnStart.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::cast_xmr_ui.Properties.Settings.Default, "DriverRestart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.restartDriverOnStart.Location = new System.Drawing.Point(116, 216);
+            this.restartDriverOnStart.Name = "restartDriverOnStart";
+            this.restartDriverOnStart.Size = new System.Drawing.Size(146, 17);
+            this.restartDriverOnStart.TabIndex = 26;
+            this.restartDriverOnStart.Text = "Restart driver on first start";
+            this.toolTip1.SetToolTip(this.restartDriverOnStart, "When the system reboots or the miner crashes, resetting the Catylist device drive" +
+        "r is required to get good hash rates.  Some people use devcon.exe for this.  Req" +
+        "uires running as Administrator.");
+            this.restartDriverOnStart.UseVisualStyleBackColor = true;
+            this.restartDriverOnStart.CheckedChanged += new System.EventHandler(this.restartDriverOnStart_CheckedChanged);
             // 
             // hashRestart
             // 
@@ -691,6 +706,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 476);
+            this.Controls.Add(this.forceCompute);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.restartDriverHashrate);
             this.Controls.Add(this.restartDriverHashDrop);
@@ -794,6 +810,7 @@
         private System.Windows.Forms.CheckBox restartDriverHashDrop;
         private System.Windows.Forms.CheckBox restartDriverOnStart;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.CheckBox forceCompute;
     }
 }
 

@@ -178,5 +178,17 @@ namespace cast_xmr_ui.Properties {
                 this["DriverRestartHashrate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ForceCompute {
+            get {
+                return ((bool)(this["ForceCompute"]));
+            }
+            set {
+                this["ForceCompute"] = value;
+            }
+        }
     }
 }

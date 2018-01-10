@@ -41,5 +41,8 @@
     <Setting Name="DriverRestartHashrate" Type="System.String" Scope="User">
       <Value Profile="(Default)">1700</Value>
     </Setting>
+    <Setting Name="ForceCompute" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
