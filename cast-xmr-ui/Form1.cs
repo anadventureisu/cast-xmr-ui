@@ -277,5 +277,14 @@ namespace cast_xmr_ui
             }
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if(startWithApp.Checked)
+            {
+                // Autostart
+                startButton_Click(sender, e);
+            }
+        }
     }
 }

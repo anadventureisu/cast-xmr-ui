@@ -76,6 +76,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.startWithApp = new System.Windows.Forms.CheckBox();
             this.forceCompute = new System.Windows.Forms.CheckBox();
             this.restartDriverHashrate = new System.Windows.Forms.TextBox();
             this.restartDriverHashDrop = new System.Windows.Forms.CheckBox();
@@ -538,6 +539,19 @@
             this.label19.TabIndex = 29;
             this.label19.Text = "H/s on restart";
             // 
+            // startWithApp
+            // 
+            this.startWithApp.AutoSize = true;
+            this.startWithApp.Checked = global::cast_xmr_ui.Properties.Settings.Default.StartWithApp;
+            this.startWithApp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.startWithApp.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::cast_xmr_ui.Properties.Settings.Default, "StartWithApp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.startWithApp.Location = new System.Drawing.Point(12, 233);
+            this.startWithApp.Name = "startWithApp";
+            this.startWithApp.Size = new System.Drawing.Size(77, 30);
+            this.startWithApp.TabIndex = 31;
+            this.startWithApp.Text = "Start when\napp starts";
+            this.startWithApp.UseVisualStyleBackColor = true;
+            // 
             // forceCompute
             // 
             this.forceCompute.AutoSize = true;
@@ -706,6 +720,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 476);
+            this.Controls.Add(this.startWithApp);
             this.Controls.Add(this.forceCompute);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.restartDriverHashrate);
@@ -737,6 +752,7 @@
             this.Controls.Add(this.poolAddress);
             this.Name = "Form1";
             this.Text = "Cast XMR UI";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gpuDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gpuStateBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -811,6 +827,7 @@
         private System.Windows.Forms.CheckBox restartDriverOnStart;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox forceCompute;
+        private System.Windows.Forms.CheckBox startWithApp;
     }
 }
 

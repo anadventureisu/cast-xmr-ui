@@ -190,5 +190,17 @@ namespace cast_xmr_ui.Properties {
                 this["ForceCompute"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StartWithApp {
+            get {
+                return ((bool)(this["StartWithApp"]));
+            }
+            set {
+                this["StartWithApp"] = value;
+            }
+        }
     }
 }
