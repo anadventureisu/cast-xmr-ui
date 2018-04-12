@@ -6,7 +6,7 @@
       <Value Profile="(Default)">1Jpa5vXshvEaQKFjenma8qarFofkEJzrPK</Value>
     </Setting>
     <Setting Name="PoolAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">cryptonight.usa.nicehash.com:3355</Value>
+      <Value Profile="(Default)">cryptonight.usa.nicehash.com:3363</Value>
     </Setting>
     <Setting Name="WorkerPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">x</Value>
@@ -46,6 +46,9 @@
     </Setting>
     <Setting Name="StartWithApp" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AdditionalArguments" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

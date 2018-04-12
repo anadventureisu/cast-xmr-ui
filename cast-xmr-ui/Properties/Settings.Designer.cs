@@ -37,7 +37,7 @@ namespace cast_xmr_ui.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("cryptonight.usa.nicehash.com:3355")]
+        [global::System.Configuration.DefaultSettingValueAttribute("cryptonight.usa.nicehash.com:3363")]
         public string PoolAddress {
             get {
                 return ((string)(this["PoolAddress"]));
@@ -200,6 +200,18 @@ namespace cast_xmr_ui.Properties {
             }
             set {
                 this["StartWithApp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AdditionalArguments {
+            get {
+                return ((string)(this["AdditionalArguments"]));
+            }
+            set {
+                this["AdditionalArguments"] = value;
             }
         }
     }

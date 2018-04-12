@@ -122,6 +122,11 @@ namespace cast_xmr_ui
 
             args.Append(" -G " + gpuText.Text);
             args.Append(" --remoteaccess");
+            if(additionalArguments.Text.Trim().Length > 0)
+            {
+                args.Append(" ");
+                args.Append(additionalArguments.Text.Trim());
+            }
             info.Arguments = args.ToString();
 
             processRunner.StartInfo = info;
