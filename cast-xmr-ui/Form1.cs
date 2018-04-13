@@ -21,10 +21,18 @@ namespace cast_xmr_ui
         DateTime minerStarted;
         private int restartCount = 0;
 
+        private AppStateMachine machine;
+        private WebClient wc;
+
         public Form1()
         {
             InitializeComponent();
+            machine = new AppStateMachine(this);
+            wc = new WebClient();
+            wc.DownloadStringCompleted += UpdateStatusComplete;
         }
+
+
 
         private void processRunner_OutputDataReceived(object sender, System.Diagnostics.DataReceivedEventArgs e)
         {
@@ -67,20 +75,13 @@ namespace cast_xmr_ui
                 }
             }
 
-            startMiner();
-
-            startButton.Enabled = false;
-            stopButton.Enabled = true;
-            //processRunner.BeginErrorReadLine();
-            //processRunner.BeginOutputReadLine();
-
-            statusTimer.Start();
-
             // Save the settings
             Properties.Settings.Default.Save();
+
+            machine.HandleEvent(AppEvent.START_CLICKED);
         }
 
-        private void startMiner()
+        public bool StartMiner()
         {
             // Clear out any old stats
             app.Reset();
@@ -140,14 +141,16 @@ namespace cast_xmr_ui
             } catch(Exception e)
             {
                 MessageBox.Show("Could not start miner: " + e.Message, "Error");
+                machine.HandleEvent(AppEvent.FAILED);
+                return false;
             }
             minerStarted = DateTime.Now;
+            return true;
         }
 
         private void processRunner_Exited(object sender, EventArgs e)
         {
-            startButton.Enabled = true;
-            stopButton.Enabled = false;
+            machine.HandleEvent(AppEvent.EXITED);
         }
 
         private void processRunner_ErrorDataReceived(object sender, DataReceivedEventArgs e)
@@ -156,20 +159,45 @@ namespace cast_xmr_ui
 
         }
 
-        private void statusTimer_Tick(object sender, EventArgs e)
+        public void BeginUpdateStatus()
         {
-            //processRunner.StandardInput.Write('s');
-            //processRunner.StandardInput.Flush();
-            WebClient wc = new WebClient();
-            try {
-                string response = wc.DownloadString("http://localhost:7777");
+            try
+            {
+                wc.DownloadStringAsync(new Uri("http://localhost:7777"));
+            }
+            catch (Exception ee)
+            {
+                consoleLog.AppendText("ERROR: could not query web service: " + ee.Message + "\n");
+                machine.HandleEvent(AppEvent.WS_UPDATE_FAILED);
+                return;
+            }
+        }
+
+        private void UpdateStatusComplete(object sender, DownloadStringCompletedEventArgs e)
+        {
+            if(e.Cancelled)
+            {
+                return;
+            }
+
+            if(e.Error != null)
+            {
+                consoleLog.AppendText("ERROR: could not query web service: " + e.Error.Message + "\n");
+                machine.HandleEvent(AppEvent.WS_UPDATE_FAILED);
+                return;
+            }
+
+            try
+            {
+                string response = e.Result;
+
                 JsonParser.Parse(response, app);
                 app.UpdateGlobalRates();
 
                 //printStatus();
-                
+
                 // If it's the first time through, populate the data binding
-                if(gpuStateBindingSource.Count != app.GpuStates.Count)
+                if (gpuStateBindingSource.Count != app.GpuStates.Count)
                 {
                     gpuStateBindingSource.Clear();
                     foreach (int gpu in app.GpuStates.Keys)
@@ -184,7 +212,7 @@ namespace cast_xmr_ui
                 // Update data binding
                 gpuStateBindingSource.ResetBindings(false);
                 appStateBindingSource.ResetBindings(false);
-                
+
 
                 int restartRate = int.Parse(hashRestart.Text);
 
@@ -196,23 +224,38 @@ namespace cast_xmr_ui
                         if (gs.FiveMinHashAvg < restartRate)
                         {
                             consoleLog.AppendText(String.Format("{2}: RESTARTING MINER - rate {0:N0} < {1:N0}\n", gs.FiveMinHashAvg, restartRate, DateTime.Now));
-                            statusTimer.Stop();
-                            processRunner.Kill();
-                            startMiner();
-                            statusTimer.Start();
                             restartCount++;
-                            restartLabel.Text = ""+restartCount;
-                            break;
+                            machine.HandleEvent(AppEvent.RATE_LOW);
+                            //statusTimer.Stop();
+                            //processRunner.Kill();
+                            //startMiner();
+                            //statusTimer.Start();
+                            //restartLabel.Text = "" + restartCount;
+                            return;
                         }
-                        
+
                     }
                 }
-                
             }
             catch (Exception ee)
             {
                 consoleLog.AppendText("ERROR: could not query web service: " + ee.Message + "\n");
+                machine.HandleEvent(AppEvent.WS_UPDATE_FAILED);
+                return;
             }
+
+
+            machine.HandleEvent(AppEvent.WS_UPDATE);
+        }
+
+        public void CancelUpdateStatus()
+        {
+            wc.CancelAsync();
+        }
+
+        private void statusTimer_Tick(object sender, EventArgs e)
+        {
+            machine.HandleEvent(AppEvent.TIMER_TICK);
         }
 
         private void printStatus()
@@ -230,8 +273,7 @@ namespace cast_xmr_ui
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            statusTimer.Stop();
-            processRunner.Kill();
+            machine.HandleEvent(AppEvent.STOP_CLICKED);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -290,6 +332,58 @@ namespace cast_xmr_ui
                 // Autostart
                 startButton_Click(sender, e);
             }
+        }
+
+        public void EnableStartButton()
+        {
+            startButton.Enabled = true;
+            stopButton.Enabled = false;
+        }
+
+        public void DisableStartButton()
+        {
+            startButton.Enabled = false;
+            stopButton.Enabled = true;
+        }
+
+        private void timeoutTimer_Tick(object sender, EventArgs e)
+        {
+            machine.HandleEvent(AppEvent.TIMEOUT);
+        }
+
+        public void StartTimeoutTimer()
+        {
+            timeoutTimer.Start();
+        }
+
+        public void StopTimeoutTimer()
+        {
+            timeoutTimer.Stop();
+        }
+
+        public void StartUpdateTimer()
+        {
+            statusTimer.Start();
+        }
+
+        public void StopUpdateTimer()
+        {
+            statusTimer.Stop();
+        }
+
+        public void StopMiner()
+        {
+            if(processRunner.HasExited)
+            {
+                machine.HandleEvent(AppEvent.EXITED);
+                return;
+            }
+            processRunner.Kill();
+        }
+
+        public void SetStateLabel(string text)
+        {
+            stateLabel.Text = text;
         }
     }
 }

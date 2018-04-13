@@ -47,9 +47,16 @@
             this.restartLabel = new System.Windows.Forms.Label();
             this.gpuDataGrid = new System.Windows.Forms.DataGridView();
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentHashRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fiveMinHashAvgDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oneHourHashAvgDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentFanSpeedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currentGpuTempDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gpuStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
             this.netErrShares = new System.Windows.Forms.Label();
+            this.appStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.outdatedShares = new System.Windows.Forms.Label();
             this.invalidShares = new System.Windows.Forms.Label();
             this.rejectedShares = new System.Windows.Forms.Label();
@@ -70,12 +77,12 @@
             this.label19 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label20 = new System.Windows.Forms.Label();
-            this.additionalArguments = new System.Windows.Forms.TextBox();
-            this.startWithApp = new System.Windows.Forms.CheckBox();
             this.forceCompute = new System.Windows.Forms.CheckBox();
-            this.restartDriverHashrate = new System.Windows.Forms.TextBox();
             this.restartDriverHashDrop = new System.Windows.Forms.CheckBox();
             this.restartDriverOnStart = new System.Windows.Forms.CheckBox();
+            this.additionalArguments = new System.Windows.Forms.TextBox();
+            this.startWithApp = new System.Windows.Forms.CheckBox();
+            this.restartDriverHashrate = new System.Windows.Forms.TextBox();
             this.hashRestart = new System.Windows.Forms.TextBox();
             this.autoRestartCheck = new System.Windows.Forms.CheckBox();
             this.gpuText = new System.Windows.Forms.TextBox();
@@ -86,18 +93,13 @@
             this.walletAddress = new System.Windows.Forms.TextBox();
             this.useNicehash = new System.Windows.Forms.CheckBox();
             this.poolAddress = new System.Windows.Forms.TextBox();
-            this.appStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.currentHashRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fiveMinHashAvgDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oneHourHashAvgDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.currentFanSpeedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.currentGpuTempDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gpuStateBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.timeoutTimer = new System.Windows.Forms.Timer(this.components);
+            this.stateLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gpuDataGrid)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.intensity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.appStateBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gpuStateBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.appStateBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intensity)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -165,7 +167,7 @@
             this.consoleLog.Multiline = true;
             this.consoleLog.Name = "consoleLog";
             this.consoleLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.consoleLog.Size = new System.Drawing.Size(699, 163);
+            this.consoleLog.Size = new System.Drawing.Size(699, 154);
             this.consoleLog.TabIndex = 11;
             // 
             // label5
@@ -280,6 +282,45 @@
             this.NameColumn.Name = "NameColumn";
             this.NameColumn.ReadOnly = true;
             // 
+            // currentHashRateDataGridViewTextBoxColumn
+            // 
+            this.currentHashRateDataGridViewTextBoxColumn.DataPropertyName = "CurrentHashRate";
+            this.currentHashRateDataGridViewTextBoxColumn.HeaderText = "Curr";
+            this.currentHashRateDataGridViewTextBoxColumn.Name = "currentHashRateDataGridViewTextBoxColumn";
+            this.currentHashRateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fiveMinHashAvgDataGridViewTextBoxColumn
+            // 
+            this.fiveMinHashAvgDataGridViewTextBoxColumn.DataPropertyName = "FiveMinHashAvg";
+            this.fiveMinHashAvgDataGridViewTextBoxColumn.HeaderText = "5m";
+            this.fiveMinHashAvgDataGridViewTextBoxColumn.Name = "fiveMinHashAvgDataGridViewTextBoxColumn";
+            this.fiveMinHashAvgDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // oneHourHashAvgDataGridViewTextBoxColumn
+            // 
+            this.oneHourHashAvgDataGridViewTextBoxColumn.DataPropertyName = "OneHourHashAvg";
+            this.oneHourHashAvgDataGridViewTextBoxColumn.HeaderText = "1h";
+            this.oneHourHashAvgDataGridViewTextBoxColumn.Name = "oneHourHashAvgDataGridViewTextBoxColumn";
+            this.oneHourHashAvgDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // currentFanSpeedDataGridViewTextBoxColumn
+            // 
+            this.currentFanSpeedDataGridViewTextBoxColumn.DataPropertyName = "CurrentFanSpeed";
+            this.currentFanSpeedDataGridViewTextBoxColumn.HeaderText = "RPM";
+            this.currentFanSpeedDataGridViewTextBoxColumn.Name = "currentFanSpeedDataGridViewTextBoxColumn";
+            this.currentFanSpeedDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // currentGpuTempDataGridViewTextBoxColumn
+            // 
+            this.currentGpuTempDataGridViewTextBoxColumn.DataPropertyName = "CurrentGpuTemp";
+            this.currentGpuTempDataGridViewTextBoxColumn.HeaderText = "Temp";
+            this.currentGpuTempDataGridViewTextBoxColumn.Name = "currentGpuTempDataGridViewTextBoxColumn";
+            this.currentGpuTempDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // gpuStateBindingSource
+            // 
+            this.gpuStateBindingSource.DataSource = typeof(CastXmrLib.GpuState);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label18);
@@ -327,6 +368,10 @@
             this.netErrShares.Size = new System.Drawing.Size(13, 13);
             this.netErrShares.TabIndex = 17;
             this.netErrShares.Text = "0";
+            // 
+            // appStateBindingSource
+            // 
+            this.appStateBindingSource.DataSource = typeof(CastXmrLib.AppState);
             // 
             // outdatedShares
             // 
@@ -510,28 +555,6 @@
             this.toolTip1.SetToolTip(this.label20, "Additional arguments to add to the command line.  This helps support any new opti" +
         "ons added to the miner.");
             // 
-            // additionalArguments
-            // 
-            this.additionalArguments.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::cast_xmr_ui.Properties.Settings.Default, "AdditionalArguments", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.additionalArguments.Location = new System.Drawing.Point(225, 215);
-            this.additionalArguments.Name = "additionalArguments";
-            this.additionalArguments.Size = new System.Drawing.Size(203, 20);
-            this.additionalArguments.TabIndex = 33;
-            this.additionalArguments.Text = global::cast_xmr_ui.Properties.Settings.Default.AdditionalArguments;
-            // 
-            // startWithApp
-            // 
-            this.startWithApp.AutoSize = true;
-            this.startWithApp.Checked = global::cast_xmr_ui.Properties.Settings.Default.StartWithApp;
-            this.startWithApp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.startWithApp.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::cast_xmr_ui.Properties.Settings.Default, "StartWithApp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.startWithApp.Location = new System.Drawing.Point(12, 210);
-            this.startWithApp.Name = "startWithApp";
-            this.startWithApp.Size = new System.Drawing.Size(77, 30);
-            this.startWithApp.TabIndex = 31;
-            this.startWithApp.Text = "Start when\napp starts";
-            this.startWithApp.UseVisualStyleBackColor = true;
-            // 
             // forceCompute
             // 
             this.forceCompute.AutoSize = true;
@@ -545,16 +568,6 @@
             this.forceCompute.Text = "Force Compute Mode";
             this.toolTip1.SetToolTip(this.forceCompute, "Helpful for 5XX cards when using standard driver.");
             this.forceCompute.UseVisualStyleBackColor = true;
-            // 
-            // restartDriverHashrate
-            // 
-            this.restartDriverHashrate.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::cast_xmr_ui.Properties.Settings.Default, "DriverRestartHashrate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.restartDriverHashrate.Location = new System.Drawing.Point(594, 455);
-            this.restartDriverHashrate.Name = "restartDriverHashrate";
-            this.restartDriverHashrate.Size = new System.Drawing.Size(52, 20);
-            this.restartDriverHashrate.TabIndex = 28;
-            this.restartDriverHashrate.Text = global::cast_xmr_ui.Properties.Settings.Default.DriverRestartHashrate;
-            this.restartDriverHashrate.Visible = false;
             // 
             // restartDriverHashDrop
             // 
@@ -588,6 +601,38 @@
             this.restartDriverOnStart.UseVisualStyleBackColor = true;
             this.restartDriverOnStart.Visible = false;
             this.restartDriverOnStart.CheckedChanged += new System.EventHandler(this.restartDriverOnStart_CheckedChanged);
+            // 
+            // additionalArguments
+            // 
+            this.additionalArguments.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::cast_xmr_ui.Properties.Settings.Default, "AdditionalArguments", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.additionalArguments.Location = new System.Drawing.Point(225, 215);
+            this.additionalArguments.Name = "additionalArguments";
+            this.additionalArguments.Size = new System.Drawing.Size(203, 20);
+            this.additionalArguments.TabIndex = 33;
+            this.additionalArguments.Text = global::cast_xmr_ui.Properties.Settings.Default.AdditionalArguments;
+            // 
+            // startWithApp
+            // 
+            this.startWithApp.AutoSize = true;
+            this.startWithApp.Checked = global::cast_xmr_ui.Properties.Settings.Default.StartWithApp;
+            this.startWithApp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.startWithApp.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::cast_xmr_ui.Properties.Settings.Default, "StartWithApp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.startWithApp.Location = new System.Drawing.Point(12, 210);
+            this.startWithApp.Name = "startWithApp";
+            this.startWithApp.Size = new System.Drawing.Size(77, 30);
+            this.startWithApp.TabIndex = 31;
+            this.startWithApp.Text = "Start when\napp starts";
+            this.startWithApp.UseVisualStyleBackColor = true;
+            // 
+            // restartDriverHashrate
+            // 
+            this.restartDriverHashrate.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::cast_xmr_ui.Properties.Settings.Default, "DriverRestartHashrate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.restartDriverHashrate.Location = new System.Drawing.Point(594, 455);
+            this.restartDriverHashrate.Name = "restartDriverHashrate";
+            this.restartDriverHashrate.Size = new System.Drawing.Size(52, 20);
+            this.restartDriverHashrate.TabIndex = 28;
+            this.restartDriverHashrate.Text = global::cast_xmr_ui.Properties.Settings.Default.DriverRestartHashrate;
+            this.restartDriverHashrate.Visible = false;
             // 
             // hashRestart
             // 
@@ -698,54 +743,27 @@
             this.poolAddress.TabIndex = 0;
             this.poolAddress.Text = global::cast_xmr_ui.Properties.Settings.Default.PoolAddress;
             // 
-            // appStateBindingSource
+            // timeoutTimer
             // 
-            this.appStateBindingSource.DataSource = typeof(CastXmrLib.AppState);
+            this.timeoutTimer.Interval = 5000;
+            this.timeoutTimer.Tick += new System.EventHandler(this.timeoutTimer_Tick);
             // 
-            // currentHashRateDataGridViewTextBoxColumn
+            // stateLabel
             // 
-            this.currentHashRateDataGridViewTextBoxColumn.DataPropertyName = "CurrentHashRate";
-            this.currentHashRateDataGridViewTextBoxColumn.HeaderText = "Curr";
-            this.currentHashRateDataGridViewTextBoxColumn.Name = "currentHashRateDataGridViewTextBoxColumn";
-            this.currentHashRateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fiveMinHashAvgDataGridViewTextBoxColumn
-            // 
-            this.fiveMinHashAvgDataGridViewTextBoxColumn.DataPropertyName = "FiveMinHashAvg";
-            this.fiveMinHashAvgDataGridViewTextBoxColumn.HeaderText = "5m";
-            this.fiveMinHashAvgDataGridViewTextBoxColumn.Name = "fiveMinHashAvgDataGridViewTextBoxColumn";
-            this.fiveMinHashAvgDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // oneHourHashAvgDataGridViewTextBoxColumn
-            // 
-            this.oneHourHashAvgDataGridViewTextBoxColumn.DataPropertyName = "OneHourHashAvg";
-            this.oneHourHashAvgDataGridViewTextBoxColumn.HeaderText = "1h";
-            this.oneHourHashAvgDataGridViewTextBoxColumn.Name = "oneHourHashAvgDataGridViewTextBoxColumn";
-            this.oneHourHashAvgDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // currentFanSpeedDataGridViewTextBoxColumn
-            // 
-            this.currentFanSpeedDataGridViewTextBoxColumn.DataPropertyName = "CurrentFanSpeed";
-            this.currentFanSpeedDataGridViewTextBoxColumn.HeaderText = "RPM";
-            this.currentFanSpeedDataGridViewTextBoxColumn.Name = "currentFanSpeedDataGridViewTextBoxColumn";
-            this.currentFanSpeedDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // currentGpuTempDataGridViewTextBoxColumn
-            // 
-            this.currentGpuTempDataGridViewTextBoxColumn.DataPropertyName = "CurrentGpuTemp";
-            this.currentGpuTempDataGridViewTextBoxColumn.HeaderText = "Temp";
-            this.currentGpuTempDataGridViewTextBoxColumn.Name = "currentGpuTempDataGridViewTextBoxColumn";
-            this.currentGpuTempDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // gpuStateBindingSource
-            // 
-            this.gpuStateBindingSource.DataSource = typeof(CastXmrLib.GpuState);
+            this.stateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.stateLabel.AutoSize = true;
+            this.stateLabel.Location = new System.Drawing.Point(9, 458);
+            this.stateLabel.Name = "stateLabel";
+            this.stateLabel.Size = new System.Drawing.Size(61, 13);
+            this.stateLabel.TabIndex = 34;
+            this.stateLabel.Text = "Initializing...";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 476);
+            this.Controls.Add(this.stateLabel);
             this.Controls.Add(this.additionalArguments);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.startWithApp);
@@ -782,11 +800,11 @@
             this.Text = "Cast XMR UI";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gpuDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gpuStateBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.intensity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.appStateBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gpuStateBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.intensity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -858,6 +876,8 @@
         private System.Windows.Forms.CheckBox startWithApp;
         private System.Windows.Forms.TextBox additionalArguments;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Timer timeoutTimer;
+        private System.Windows.Forms.Label stateLabel;
     }
 }
 
